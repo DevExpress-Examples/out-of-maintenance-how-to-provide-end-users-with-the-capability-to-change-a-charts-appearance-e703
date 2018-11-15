@@ -1,3 +1,11 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Form1.cs](./CS/Form1.cs) (VB: [Form1.vb](./VB/Form1.vb))
+* [PaletteEditControl.cs](./CS/PaletteEditControl.cs) (VB: [PaletteEditControl.vb](./VB/PaletteEditControl.vb))
+* [StyleEdit.cs](./CS/StyleEdit.cs) (VB: [StyleEdit.vb](./VB/StyleEdit.vb))
+* [StylesContainerControl.cs](./CS/StylesContainerControl.cs) (VB: [StylesContainerControl.vb](./VB/StylesContainerControl.vb))
+<!-- default file list end -->
 # How to provide end-users with the capability to change a chart's appearance
 
 
