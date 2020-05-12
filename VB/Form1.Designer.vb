@@ -52,20 +52,14 @@ Namespace ChartAppearanceSample
 			' 
 			Me.chartControl1.Anchor = (CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles))
 			xyDiagram1.AxisX.VisibleInPanesSerializable = "-1"
-			xyDiagram1.AxisX.Range.SideMarginsEnabled = True
-			xyDiagram1.AxisX.Range.ScrollingRange.SideMarginsEnabled = True
 			xyDiagram1.AxisY.VisibleInPanesSerializable = "-1"
-			xyDiagram1.AxisY.Range.SideMarginsEnabled = True
-			xyDiagram1.AxisY.Range.ScrollingRange.SideMarginsEnabled = True
 			Me.chartControl1.Diagram = xyDiagram1
 			Me.chartControl1.Location = New System.Drawing.Point(12, 12)
 			Me.chartControl1.Name = "chartControl1"
 			series1.Name = "Series 1"
-			series1.Points.AddRange(New DevExpress.XtraCharts.SeriesPoint() { seriesPoint1, seriesPoint2, seriesPoint3, seriesPoint4, seriesPoint5, seriesPoint6, seriesPoint7})
-			sideBySideBarSeriesLabel1.LineVisible = True
+			series1.Points.AddRange(New DevExpress.XtraCharts.SeriesPoint() {seriesPoint1, seriesPoint2, seriesPoint3, seriesPoint4, seriesPoint5, seriesPoint6, seriesPoint7})
 			series1.Label = sideBySideBarSeriesLabel1
-			Me.chartControl1.SeriesSerializable = New DevExpress.XtraCharts.Series() { series1}
-			sideBySideBarSeriesLabel2.LineVisible = True
+			Me.chartControl1.SeriesSerializable = New DevExpress.XtraCharts.Series() {series1}
 			Me.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel2
 			Me.chartControl1.Size = New System.Drawing.Size(548, 200)
 			Me.chartControl1.TabIndex = 0

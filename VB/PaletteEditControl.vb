@@ -164,7 +164,7 @@ Namespace ChartAppearanceSample
 		End Sub
 		Private Sub btnEdit_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEdit.Click
 			Dim palette As Palette = SelectedPalette
-			Using form As New PaletteEditorForm(paletteRepository_Renamed)
+			Using form As New PaletteEditorForm(Chart, paletteRepository_Renamed)
 				form.LookAndFeel.ParentLookAndFeel = LookAndFeel.ParentLookAndFeel
 				form.Location = ControlUtils.CalcLocation(Cursor.Position, Cursor.Position, form.Size)
 				form.TopMost = True

@@ -1,13 +1,12 @@
+using DevExpress.LookAndFeel;
+using DevExpress.Utils;
+using DevExpress.XtraCharts;
+using DevExpress.XtraCharts.Design;
+using DevExpress.XtraEditors;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.Design;
-using DevExpress.Utils;
-using DevExpress.LookAndFeel;
-using DevExpress.XtraEditors;
-using DevExpress.XtraCharts;
-using DevExpress.XtraCharts.Design;
 
 namespace ChartAppearanceSample {
     public partial class PaletteEditControl : XtraUserControl {
@@ -16,21 +15,20 @@ namespace ChartAppearanceSample {
             Bitmap image = null;
             try {
                 image = new Bitmap(palette.Count * (imageSize + 1) - 1, imageSize);
-                using(Graphics g = Graphics.FromImage(image)) {
+                using (Graphics g = Graphics.FromImage(image)) {
                     Rectangle rect = new Rectangle(Point.Empty, new Size(imageSize, imageSize));
-                    for(int i = 0; i < palette.Count; i++, rect.X += 11) {
-                        using(Brush brush = new SolidBrush(palette[i].Color))
+                    for (int i = 0; i < palette.Count; i++, rect.X += 11) {
+                        using (Brush brush = new SolidBrush(palette[i].Color))
                             g.FillRectangle(brush, rect);
                         Rectangle penRect = rect;
                         penRect.Width--;
                         penRect.Height--;
-                        using(Pen pen = new Pen(Color.Gray))
+                        using (Pen pen = new Pen(Color.Gray))
                             g.DrawRectangle(pen, penRect);
                     }
                 }
-            }
-            catch {
-                if(image != null) {
+            } catch {
+                if (image != null) {
                     image.Dispose();
                     image = null;
                 }
@@ -67,11 +65,10 @@ namespace ChartAppearanceSample {
                 return lbPalettes.SelectedValue as Palette;
             }
             set {
-                if(value == null) {
-                    if(lbPalettes.ItemCount > 0)
+                if (value == null) {
+                    if (lbPalettes.ItemCount > 0)
                         lbPalettes.SelectedIndex = 0;
-                }
-                else
+                } else
                     lbPalettes.SelectedValue = value;
             }
         }
@@ -91,14 +88,14 @@ namespace ChartAppearanceSample {
             Size imageSize = Size.Empty;
             lbPalettes.Items.BeginUpdate();
             lbPalettes.Items.Clear();
-            for(int i = 0; i < names.Length; i++) {
+            for (int i = 0; i < names.Length; i++) {
                 string name = names[i];
                 Palette palette = paletteRepository[name];
                 Image image = CreateEditorImage(palette);
                 images[i] = image;
-                if(image.Width > imageSize.Width)
+                if (image.Width > imageSize.Width)
                     imageSize.Width = image.Width;
-                if(image.Height > imageSize.Height)
+                if (image.Height > imageSize.Height)
                     imageSize.Height = image.Height;
                 lbPalettes.Items.Add(palette, i);
             }
@@ -106,18 +103,17 @@ namespace ChartAppearanceSample {
             paletteImages.BeginInit();
             paletteImages.Clear();
             paletteImages.ImageSize = imageSize;
-            for(int i = 0; i < images.Length; i++) {
+            for (int i = 0; i < images.Length; i++) {
                 Image image = images[i];
                 Bitmap newImage = null;
-                if(image.Size != imageSize) {
+                if (image.Size != imageSize) {
                     try {
                         newImage = new Bitmap(imageSize.Width, imageSize.Height);
-                        using(Graphics gr = Graphics.FromImage(newImage))
+                        using (Graphics gr = Graphics.FromImage(newImage))
                             gr.DrawImage(image, Point.Empty);
                         image.Dispose();
-                    }
-                    catch {
-                        if(newImage != null) {
+                    } catch {
+                        if (newImage != null) {
                             newImage.Dispose();
                             newImage = null;
                         }
@@ -128,29 +124,29 @@ namespace ChartAppearanceSample {
             paletteImages.EndInit();
         }
         void RaisePaletteChanged() {
-            if(OnPaletteChanged != null)
+            if (OnPaletteChanged != null)
                 OnPaletteChanged(this, EventArgs.Empty);
         }
         void RaiseNeedClose() {
-            if(OnNeedClose != null)
+            if (OnNeedClose != null)
                 OnNeedClose(this, EventArgs.Empty);
         }
         void lbPalettes_SelectedIndexChanged(object sender, EventArgs e) {
-            if(chart != null)
+            if (chart != null)
                 chart.PaletteName = SelectedPalette.Name;
             RaisePaletteChanged();
         }
         void lbPalettes_MouseDoubleClick(object sender, MouseEventArgs e) {
-            if(e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
                 RaiseNeedClose();
         }
         void lbPalettes_KeyDown(object sender, KeyEventArgs e) {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
                 RaiseNeedClose();
         }
         void btnEdit_Click(object sender, EventArgs e) {
             Palette palette = SelectedPalette;
-            using(PaletteEditorForm form = new PaletteEditorForm(paletteRepository)) {
+            using (PaletteEditorForm form = new PaletteEditorForm(chart, paletteRepository)) {
                 form.LookAndFeel.ParentLookAndFeel = LookAndFeel.ParentLookAndFeel;
                 form.Location = ControlUtils.CalcLocation(Cursor.Position, Cursor.Position, form.Size);
                 form.TopMost = true;

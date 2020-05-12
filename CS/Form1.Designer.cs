@@ -58,11 +58,7 @@ namespace ChartAppearanceSample {
             this.chartControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisX.Range.SideMarginsEnabled = true;
-            xyDiagram1.AxisX.Range.ScrollingRange.SideMarginsEnabled = true;
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.Range.SideMarginsEnabled = true;
-            xyDiagram1.AxisY.Range.ScrollingRange.SideMarginsEnabled = true;
             this.chartControl1.Diagram = xyDiagram1;
             this.chartControl1.Location = new System.Drawing.Point(12, 12);
             this.chartControl1.Name = "chartControl1";
@@ -75,11 +71,9 @@ namespace ChartAppearanceSample {
             seriesPoint5,
             seriesPoint6,
             seriesPoint7});
-            sideBySideBarSeriesLabel1.LineVisible = true;
             series1.Label = sideBySideBarSeriesLabel1;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
-            sideBySideBarSeriesLabel2.LineVisible = true;
             this.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel2;
             this.chartControl1.Size = new System.Drawing.Size(548, 200);
             this.chartControl1.TabIndex = 0;
